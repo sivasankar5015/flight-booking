@@ -11,7 +11,9 @@ pipeline {
 			}
 		}
 		stage ("Docker Login") {
-			sh 'docker login -u satyendrasingh -p Password@123'
+			steps {
+				sh 'docker login -u satyendrasingh -p Password@123'
+			}
 		}
 		stage("Docker-Build"){
 			steps {
