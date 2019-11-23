@@ -10,7 +10,7 @@ pipeline {
 				sh 'mvn -Dmaven.test.skip=true install'
 			}
 		}
-		stage ("Docker-Login) {
+		stage ("Docker-Login") {
 			steps {
 				sh 'docker login -u satyendrasingh -p Password@123'
 			}
