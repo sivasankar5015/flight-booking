@@ -12,7 +12,7 @@ pipeline {
 		}
 		stage("Docker-Build"){
 			steps {
-				sh 'docker build -t search:${env.BUILD_ID} search/'
+				sh "docker build -t search:${env.BUILD_ID} search/"
 			}
 		}
 	}
