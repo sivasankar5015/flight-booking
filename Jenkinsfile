@@ -38,5 +38,14 @@ pipeline {
 				sh "docker tag website:0.${env.BUILD_ID} satyendrasingh/website:0.${env.BUILD_ID}"
 			}
 		}
+		stage ("Pushing-Images-to-Registry"){
+			steps {
+				sh "docker push satyendrasingh/search:0.${env.BUILD_ID}"
+				sh "docker push satyendrasingh/book:0.${env.BUILD_ID}"
+				sh "docker push satyendrasingh/checkin:0.${env.BUILD_ID}"
+				sh "docker push satyendrasingh/fares:0.${env.BUILD_ID}"
+				sh "docker push satyendrasingh/website:0.${env.BUILD_ID}"
+			}
+		}
 	}
 }
