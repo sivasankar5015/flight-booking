@@ -10,13 +10,9 @@ pipeline {
 				sh 'mvn -Dmaven.test.skip=true install'
 			}
 		}
-		stage ("Docker Login") {
+		stage ("Docker-Login-And-Build") {
 			steps {
 				sh 'docker login -u satyendrasingh -p Password@123'
-			}
-		}
-		stage("Docker-Build"){
-			steps {
 				sh "docker build -t search:${env.BUILD_ID} search/"
 			}
 		}
