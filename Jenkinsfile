@@ -17,7 +17,7 @@ pipeline {
 		}
 		stage ("Deleting-Previous-Docker-Builds"){
 			steps {
-				sh "docker rmi -f  $(docker images -aq)"
+				sh "docker rmi -f  \$(docker images -aq)"
 			}
 		}
 		stage ("Docker-Build-Services") {
