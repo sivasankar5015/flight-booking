@@ -24,5 +24,14 @@ pipeline {
 				sh "docker build -t website:0.${env.BUILD_ID} website/"
 			}
 		}
+		stages ("Tagging-docker-images") {
+			steps {
+				sh "docker tag search:0.${env.BUILD_ID} satyendrasingh/search:0.${env.BUILD_ID}"
+				sh "docker tag fares:0.${env.BUILD_ID} satyendrasingh/fares:0.${env.BUILD_ID}"
+				sh "docker tag book:0.${env.BUILD_ID} satyendrasingh/book:0.${env.BUILD_ID}"
+				sh "docker tag checkin:0.${env.BUILD_ID} satyendrasingh/checkin:0.${env.BUILD_ID}"
+				sh "docker tag website:0.${env.BUILD_ID} satyendrasingh/website:0.${env.BUILD_ID}"
+			}
+		}
 	}
 }
