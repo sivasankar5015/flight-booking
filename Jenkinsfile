@@ -15,6 +15,11 @@ pipeline {
 				sh 'docker login -u satyendrasingh -p Password@123'
 			}
 		}
+		stage ("Deleting-Previous-Docker-Builds"){
+			steps {
+				sh "docker rmi -f  $(docker images -aq)"
+			}
+		}
 		stage ("Docker-Build-Services") {
 			steps {
 				sh "docker build -t search:0.${env.BUILD_ID} search/"
