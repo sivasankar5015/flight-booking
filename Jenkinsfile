@@ -47,5 +47,13 @@ pipeline {
 				sh "docker push satyendrasingh/website:0.${env.BUILD_ID}"
 			}
 		}
+		stage('DeployToProduction') {
+            		steps {
+                		kubernetesDeploy(
+                    			kubeconfigId: 'kubeconfig',
+                    			configs: 'flight-booking-kube.yml'
+                		)
+            		}
+        	}
 	}
 }
