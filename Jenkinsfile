@@ -4,7 +4,7 @@ pipeline {
 	stages {
 		stage("Maven-Build"){
 			steps {
-				sh 'mvn clean package'
+				sh 'mvn -Dmaven.test.skip=true install'
 			}
 		}
 		stage ("Docker-Login") {
