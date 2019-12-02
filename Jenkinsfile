@@ -7,12 +7,12 @@ pipeline {
 	stages {
 		stage("Maven-Build"){
 			steps {
-				sh 'mvn -Dmaven.test.skip=true install'
+				sh 'mvn clean package'
 			}
 		}
 		stage ("Docker-Login") {
 			steps {
-				sh 'docker login -u satyendrasingh -p Password@123'
+				sh 'docker login -u siva3100 -p Siva@5015'
 			}
 		}
 		stage ("Deleting-Previous-Docker-Builds"){
@@ -28,14 +28,14 @@ pipeline {
 		}
 		stage ("Tagging-docker-images") {
 			steps {
-				sh "docker tag search:0.${env.BUILD_ID} satyendrasingh/search:0.${env.BUILD_ID}"
-				sh "docker tag website:0.${env.BUILD_ID} satyendrasingh/website:0.${env.BUILD_ID}"
+				sh "docker tag search:0.${env.BUILD_ID} siva3100/search:0.${env.BUILD_ID}"
+				sh "docker tag website:0.${env.BUILD_ID} siva3100/website:0.${env.BUILD_ID}"
 			}
 		}
 		stage ("Pushing-Images-to-Registry"){
 			steps {
-				sh "docker push satyendrasingh/search:0.${env.BUILD_ID}"
-				sh "docker push satyendrasingh/website:0.${env.BUILD_ID}"
+				sh "docker push siva3100/search:0.${env.BUILD_ID}"
+				sh "docker push siva3100/website:0.${env.BUILD_ID}"
 			}
 		}
 		stage('DeployToProduction') {
