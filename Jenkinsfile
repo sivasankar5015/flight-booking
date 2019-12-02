@@ -23,16 +23,19 @@ pipeline {
 		stage ("Docker-Build-Services") {
 			steps {
 				sh "docker build -t search:0.${env.BUILD_ID} search/"
+				sh "docker build -t website:0.${env.BUILD_ID} website/"
 			}
 		}
 		stage ("Tagging-docker-images") {
 			steps {
 				sh "docker tag search:0.${env.BUILD_ID} satyendrasingh/search:0.${env.BUILD_ID}"
+				sh "docker tag website:0.${env.BUILD_ID} satyendrasingh/website:0.${env.BUILD_ID}"
 			}
 		}
 		stage ("Pushing-Images-to-Registry"){
 			steps {
 				sh "docker push satyendrasingh/search:0.${env.BUILD_ID}"
+				sh "docker push satyendrasingh/website:0.${env.BUILD_ID}"
 			}
 		}
 		stage('DeployToProduction') {
